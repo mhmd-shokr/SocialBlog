@@ -15,11 +15,9 @@ class ClapController extends Controller
         $existingClap = $post->claps()->where('user_id', $userId)->first();
     
         if ($existingClap) {
-            // لو عمل clap قبل كده، نحذفه
             $existingClap->delete();
             $status = 'unclapped';
         } else {
-            // لو أول مرة، نضيفه
             $post->claps()->create(['user_id' => $userId]);
             $status = 'clapped';
         }
